@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: smart-price-monitor-agent
+    runtime: docker
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_HOST
+        value: 0.0.0.0
+      - key: APP_PORT
+        value: 8000
+      - key: LOG_LEVEL
+        value: INFO
+      - key: PRICE_PROVIDER_MODE
+        value: live
+      - key: PRICE_API_BASE_URL
+        value: https://dummyjson.com
+      - key: REQUEST_TIMEOUT_SECONDS
+        value: 10
+      - key: DATABASE_URL
+        value: sqlite:///./price_monitor.db
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: OPENAI_API_KEY
+        sync: false
